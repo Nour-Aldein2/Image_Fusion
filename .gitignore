@@ -1,0 +1,37 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Environment variables / secrets
+.env
+
+# Docker / logs
+*.log
+
+# Machine learning data / model files
+data/
+datasets/
+checkpoints/
+outputs/
+runs/
+*.h5
+*.pt
+*.pth
+*.ckpt
+*.onnx
