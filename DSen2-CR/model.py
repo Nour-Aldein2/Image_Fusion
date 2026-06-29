@@ -37,6 +37,7 @@ class DSen2CR(nn.Module):
         z = self.conv1(x)
         z = self.relu(z)
         z = self.res_blocks(z)
-        z = self.conv2(z)
-        return z + optical
+        z = self.conv2(z)  # predicted residual correction map
+        # NOTE: The long skip connection lets the model predict only the difference between the cloudy optical image and the clean optical image g
+        return z + optical  # long skip: add cloudy optical input before output
     
