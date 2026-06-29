@@ -1,23 +1,24 @@
 import torch
 from torch import nn
+from torch import Tensor
 
+from config import Config
 
-class ResScale(nn.Module):
-    def __init__(self):
-        super().__init__()
-
-    def forward(self):
-        return
 
 class ResBlock(nn.Module):
-    def __init__(self, hidden_dim, out_dim, kernel_size, stride, padding):
+    def __init__(self, cfg: Config):
         super().__init__()
-        self.conv1 = nn.Conv2d(hidden_dim, hidden_dim, kernel_size, stride, padding)
+        self.cfg = cfg
+        self.conv1 = nn.Conv2d(cfg.res_block.hidden_dim, cfg.res_block.hidden_dim, cfg.res_block.kernel_size, cfg.res_block.stride, cfg.res_block.padding)
         self.relu = nn.ReLU()
-        self.conv2 = nn.Conv2d(hidden_dim, out_dim, kernel_size, stride, padding)
+        self.conv2 = nn.Conv2d(cfg.res_block.hidden_dim, cfg.res_block.out_dim, cfg.res_block.kernel_size, cfg.res_block.stride, cfg.res_block.padding)
 
-    def forward(self):
-        return
+    def forward(self, x: Tensor):
+        z = self.conv1(x)
+        z = self.relu(z)
+        z = self.conv2(z)
+        z = z * self.cfg.res_block.res_scale_const
+        return x + z
 
 
 class DSen2CR(nn.Module):
