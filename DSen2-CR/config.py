@@ -29,6 +29,12 @@ class ModelConfig:
 
 
 @dataclass
+class LossFunction:
+    lamb: float = 1
+
+
+@dataclass
 class Config:
     res_block: ResidualBlockConfig = field(default_factory=ResidualBlockConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
+    loss_fcn: LossFunction = field(default_factory=LossFunction)
