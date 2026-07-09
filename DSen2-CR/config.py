@@ -31,6 +31,7 @@ class ModelConfig:
 @dataclass
 class LossFunction:
     lamb: float = 1
+    return_parts: bool = False
 
 
 @dataclass
