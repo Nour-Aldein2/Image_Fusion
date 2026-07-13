@@ -35,7 +35,14 @@ class LossFunction:
 
 
 @dataclass
+class CSMMask:
+    cloud_threshold: float = 0.2
+    reflectance_scale: float = 10000.0
+
+
+@dataclass
 class Config:
     res_block: ResidualBlockConfig = field(default_factory=ResidualBlockConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
     loss_fcn: LossFunction = field(default_factory=LossFunction)
+    csm_mask: CSMMask = field(default_factory=CSMMask)
