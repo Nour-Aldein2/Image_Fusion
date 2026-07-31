@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass, field
 
+import torch
+
 
 @dataclass
 class ResidualBlockConfig:
@@ -42,6 +44,7 @@ class CSMMask:
 
 @dataclass
 class Config:
+    device: str = "cuda" if torch.cuda.is_available() else "cpu"
     res_block: ResidualBlockConfig = field(default_factory=ResidualBlockConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
     loss_fcn: LossFunction = field(default_factory=LossFunction)
