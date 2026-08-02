@@ -10,14 +10,6 @@ from loss_fcns import CARLLoss
 from data_utils import make_dataloaders, CloudRemovalDataset
 from model import DSen2CR
 
-cfg = Config()
-
-criterion = CARLLoss(cfg)
-csm_fcn = CSMMask(cfg)
-
-csm = csm_fcn(cloudy_optical)
-loss = criterion(pred, target, cloudy_input, csm)
-
 
 def one_epoch(cfg: Config, model, optimizer,
               train_loader: CloudRemovalDataset, val_loader: CloudRemovalDataset,
