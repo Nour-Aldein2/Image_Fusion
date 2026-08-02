@@ -47,6 +47,7 @@ class CSMMask:
 class Config:
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
     data_path: str | Path = "../data"
+    saving_path: str | Path = "../checkpoints"
     num_workers: int = 8
 
     epochs: int = 1000

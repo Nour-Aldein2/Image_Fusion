@@ -156,7 +156,7 @@ if __name__ == "__main__":
         ]
         for split_name, dataset in datasets.items()
     }
-    torch.save(split_manifest, "./split_manifest.pt")
+    torch.save(split_manifest, f"{cfg.saving_path}/split_manifest.pt")
     print("Saved train/validation/test sample IDs to split_manifest.pt")
 
     best_val_loss = float("inf")
@@ -177,7 +177,7 @@ if __name__ == "__main__":
                 "optimizer_state_dict": optimizer.state_dict(),
                 "best_val_loss": best_val_loss,
                 "history": history,
-            }, f"best_model_epoch_{epoch}.pt")
+            }, f"{cfg.saving_path}/best_model_epoch_{epoch}.pt")
         else:
             patience_counter += 1
 
@@ -190,7 +190,7 @@ if __name__ == "__main__":
                 "best_val_loss": best_val_loss,
                 "history": history,
             },
-                f"training_ended_epoch_{epoch}.pt")
+                f"{cfg.saving_path}/training_ended_epoch_{epoch}.pt")
             break
 
 ## TODO: when you get the dataloader, save the val and test splits for later use.
