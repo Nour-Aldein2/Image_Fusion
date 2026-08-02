@@ -1,2 +1,4 @@
 torch~=2.12.1
 rasterio~=1.4.4
+tqdm~=4.70.0
+numpy~=2.2.6
