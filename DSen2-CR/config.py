@@ -46,13 +46,13 @@ class CSMMask:
 @dataclass
 class Config:
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
-    data_path: str | Path = "."
+    data_path: str | Path = "../data"
     num_workers: int = 8
 
     epochs: int = 1000
     es_patience: int = 25
-    batch_size: int = 256
-    learning_rate: float = 1e-3
+    batch_size: int = 16   # Paper's value
+    learning_rate: float = 7e-5   # Paper's value
 
     res_block: ResidualBlockConfig = field(default_factory=ResidualBlockConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
