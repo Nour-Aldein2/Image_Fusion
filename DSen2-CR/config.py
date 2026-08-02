@@ -1,6 +1,7 @@
 # config.py
 
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import torch
 
@@ -45,6 +46,14 @@ class CSMMask:
 @dataclass
 class Config:
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
+    data_path: str | Path = "."
+    num_workers: int = 8
+
+    epochs: int = 1000
+    es_patience: int = 25
+    batch_size: int = 256
+    learning_rate: float = 1e-3
+
     res_block: ResidualBlockConfig = field(default_factory=ResidualBlockConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
     loss_fcn: LossFunction = field(default_factory=LossFunction)
